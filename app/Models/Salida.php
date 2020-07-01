@@ -22,14 +22,14 @@ class Salida extends Model
         return $this->hasMany('\App\Models\Detalle_salida', 'salidas_id');
     }
 
-    public function productos() {
-        return $this->hasManyThrough(
-            'App\Models\Producto', // Modelo destino
-            'App\Models\Detalle_salida', // Modelo intermedio
-            'productos_id', // Clave foránea en la tabla intermedia
-            'id', // Clave foránea en la tabla de destino
-            'id', // Clave primaria en la tabla de origen
-            'id', // Clave primaria en la tabla intermedia
-        );
-    }
+    // public function productos() {
+    //     return $this->hasManyThrough([
+    //         'App\Models\Producto', // Modelo destino
+    //         'App\Models\Detalle_salida', // Modelo intermedio
+    //         'productos_id', // Clave foránea en la tabla intermedia
+    //         'id', // Clave foránea en la tabla de destino
+    //         'id', // Clave primaria en la tabla de origen
+    //         'id', // Clave primaria en la tabla intermedia
+    //     ]);
+    // }
 }

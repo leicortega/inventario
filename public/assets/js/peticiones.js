@@ -560,7 +560,7 @@ function addProducto() {
                         <div class="col-3 text-right">${data.precio*cantidad}</div>
                     </div>
                     <input type="hidden" name="id_producto_${total_productos}" value="${data.id}" />
-                    <input type="hidden" name="cantidad_producto_${total_productos}" value="${data.id}" />
+                    <input type="hidden" name="cantidad_producto_${total_productos}" value="${cantidad}" />
                 `;
 
                 $('#producto_id').val('-1').addClass('active').selected = true

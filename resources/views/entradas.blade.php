@@ -98,7 +98,7 @@
                                                     <a href="#">{{ $entrada->id }}</a>
                                                 </th>
                                                 <td>{{ $entrada->fecha }}</td>
-                                                <td>{{ \App\Models\Cliente::find($entrada->proveedores_id)->name }}</td>
+                                                <td>{{ \App\Models\Proveedor::find($entrada->proveedores_id)->name }}</td>
                                                 <td>{{ \App\User::find($entrada->users_id)->name }}</td>
                                                 <td>{{ $entrada->total }}</td>
                                                 {{-- <td>{{ \App\Models\Proveedor::find($producto->proveedores_id)->name }}</td> --}}

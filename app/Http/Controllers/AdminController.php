@@ -101,7 +101,7 @@ class AdminController extends Controller
         $fin = Str::substr($request['rango'], 13, 23);
 
         $data = [
-            'salidas' => Salida::whereBetween('fecha', [$inicio, $fin])->with('detalle_salidas')->with('cliente')->with('vendedor')->with('productos')->get(),
+            'salidas' => Salida::whereBetween('fecha', [$inicio, $fin])->with('detalle_salidas')->with('cliente')->with('vendedor')->get(),
             'entradas' => Entrada::whereBetween('fecha', [$inicio, $fin])->with('detalle_entradas')->with('proveedor')->with('vendedor')->get()
         ];
         

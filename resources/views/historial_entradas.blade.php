@@ -15,12 +15,12 @@
                         <div class="row col-12 justify-content-center">
                             <ul class="nav nav-pills">
                                 <li class="nav-item uim-icon-dark">
-                                    <a class="nav-link {{isset($salidas) ? 'active' : ''}}" href="/productos/historial/salidas/{{$entradas[0]->productos->id ?? $salidas[0]->productos->id}}">
+                                    <a class="nav-link {{isset($salidas) ? 'active' : ''}}" href="/productos/historial/salidas/{{$entradas[0]->productos->id ?? $salidas[0]->productos->id ?? ''}}">
                                         <i class="uim uim-exit font-size-18 mr-1 align-middle"></i> <span class="d-none d-md-inline-block">Salidas</span>
                                     </a>
                                 </li>
                                 <li class="nav-item uim-icon-dark">
-                                    <a class="nav-link {{isset($entradas) ? 'active' : ''}}" href="/productos/historial/entradas/{{$entradas[0]->productos->id ?? $salidas[0]->productos->id}}">
+                                    <a class="nav-link {{isset($entradas) ? 'active' : ''}}" href="/productos/historial/entradas/{{$entradas[0]->productos->id ?? $salidas[0]->productos->id ?? ''}}">
                                         <i class="uim uim-entry font-size-18 mr-1 align-middle"></i> <span class="d-none d-md-inline-block">Entradas</span>
                                     </a>
                                 </li>

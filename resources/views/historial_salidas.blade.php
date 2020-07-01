@@ -15,12 +15,12 @@
                         <div class="row col-12 justify-content-center">
                             <ul class="nav nav-pills">
                                 <li class="nav-item uim-icon-dark">
-                                    <a class="nav-link active" href="/productos/historial/salidas/{{$salidas[0]->productos->id ?? $entradas[0]->productos->id}}">
+                                    <a class="nav-link active" href="/productos/historial/salidas/{{$salidas[0]->productos->id ?? $entradas[0]->productos->id ?? ''}}">
                                         <i class="uim uim-exit font-size-18 mr-1 align-middle"></i> <span class="d-none d-md-inline-block">Salidas</span>
                                     </a>
                                 </li>
                                 <li class="nav-item uim-icon-dark">
-                                    <a class="nav-link" href="/productos/historial/entradas/{{$salidas[0]->productos->id ?? $entradas[0]->productos->id}}">
+                                    <a class="nav-link" href="/productos/historial/entradas/{{$salidas[0]->productos->id ?? $entradas[0]->productos->id ?? ''}}">
                                         <i class="uim uim-entry font-size-18 mr-1 align-middle"></i> <span class="d-none d-md-inline-block">Entradas</span>
                                     </a>
                                 </li>
@@ -34,7 +34,7 @@
                                         <tr>
                                             <th colspan="12" class="text-center">
                                                 <div class="d-inline-block icons-sm mr-2"><i class="uim uim-exit"></i></div>
-                                                <span class="header-title mt-2">Historial salidas producto <b>{{$salidas[0]->productos->name}}</b></span>
+                                                <span class="header-title mt-2">Historial salidas producto <b>{{$salidas[0]->productos->name ?? ''}}</b></span>
                                             </th>
                                         </tr>
                                         <!--Parte de busqueda de datos-->

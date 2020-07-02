@@ -33,7 +33,7 @@
                                         </div>
 
                                         <div class="card-footer text-center">
-                                            <a href="#">Ir a Entradas</a>
+                                            <a href="entradas/list">Ir a Entradas</a>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                         </div>
 
                                         <div class="card-footer text-center">
-                                            <a href="#">Ir a Salidas</a>
+                                            <a href="salidas/list">Ir a Salidas</a>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                         </div>
 
                                         <div class="card-footer text-center">
-                                            <a href="#">Ir a Productos</a>
+                                            <a href="/productos/list">Ir a Productos</a>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                         </div>
 
                                         <div class="card-footer text-center">
-                                            <a href="#">Ir a Proveedores</a>
+                                            <a href="/proveedores/list">Ir a Proveedores</a>
                                         </div>
                                     </div>
                                 </div>

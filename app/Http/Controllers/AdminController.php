@@ -106,7 +106,7 @@ class AdminController extends Controller
         ];
         
         // dd($data);
-        return view('informes.excel', ['data' => $data]);
-        // return Excel::download(new InformeExport($data), 'informe.xlsx');
+        // return view('informes.excel', ['data' => $data]);
+        return (new InformeExport)->rango($inicio, $fin)->download('informe.xlsx');
     }
 }

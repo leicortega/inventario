@@ -2,23 +2,36 @@
 
 namespace App\Exports;
 
-use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\FromView;
+use App\Exports\Sheets\InformePerSheet;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class InformeExport implements FromView
+class InformeExport implements WithMultipleSheets
 {
     use Exportable;
 
-    private $data;
+    private $inicio;
+    private $fin;
+    
+    public function rango($inicio, $fin)
+    {
+        $this->inicio = $inicio;
+        $this->fin = $fin;
 
-    public function __construct($data) {
-        $this->data = $data;
+        return $this;
     }
 
-    public function view() : View
+    /**
+     * @return array
+     */
+    public function sheets(): array
     {
-        return view('informes.excel', ['data' => $this->data]);
+        $sheets = [];
+
+        for ($hoja = 1; $hoja <= 2; $hoja++) {
+            $sheets[] = new InformePerSheet($this->inicio, $this->fin, $hoja);
+        }
+
+        return $sheets;
     }
 }

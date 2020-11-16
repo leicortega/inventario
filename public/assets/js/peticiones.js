@@ -3,6 +3,10 @@ $(document).ready(function () {
         $('#modal-create-proveedor').modal('show');
     }
 
+    if (window.location.pathname == '/clientes/create') {
+        $('#modal-create-cliente').modal('show');
+    }
+
     if (window.location.pathname == '/productos/create') {
         $('#modal-create-producto').modal('show');
     }
@@ -29,28 +33,28 @@ $(document).ready(function () {
                 } else {
                     $('#modal-blade').modal('show');
                     $('#modal-blade-title').html('Crear Cliente');
-                
+
                     var content = `
                         <div class="alert alert-danger d-none" id="alert-createCliente">Ocurrio un error, recargue la pagina.</div>
-                    
+
                         <form id="form_createCliente" method="POST" >
-        
+
                             <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
-                        
+
                             <div class="form-group row">
                                 <label for="name" class="col-sm-2 col-form-label">Nombre</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="text" name="name" placeholder="Escriba el nombre" required />
                                 </div>
                             </div>
-                                    
+
                             <div class="form-group row">
                                 <label for="identificacion" class="col-sm-2 col-form-label">Identificacion</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="number" name="identificacion" id="identificacion_createCliente" placeholder="Escriba la identificacion" required />
                                 </div>
                             </div>
-                        
+
                             <div class="form-group row">
                                 <label for="email" class="col-sm-2 col-form-label">Correo (opcional)</label>
                                 <div class="col-sm-10">
@@ -71,13 +75,13 @@ $(document).ready(function () {
                                     <input class="form-control" type="text" name="direccion" placeholder="Escriba la direccion" />
                                 </div>
                             </div>
-                        
+
                             <div class="mt-3">
                                 <button class="btn btn-primary btn-lg waves-effect waves-light" type="button" onclick="createCliente()" id="btn-createCliente">Crear</button>
-                            </div> 
-        
+                            </div>
+
                         </form>`;
-        
+
                     $('#modal-blade-body').html(content);
                     $('#identificacion_createCliente').val(id)
                 }
@@ -114,35 +118,35 @@ function showUser(id) {
         success: function (data) {
             $('#modal-blade').modal('show');
             $('#modal-blade-title').html(data.user.name);
-            
+
             var content = `
-            
+
                 <form action="/admin/users/update" method="POST" >
 
                     <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
                     <input type="hidden" name="id" value="${data.user.id}">
-                
+
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="name" placeholder="Escriba el nombre" value="${data.user.name}" required />
                         </div>
                     </div>
-                            
+
                     <div class="form-group row">
                         <label for="identificacion" class="col-sm-2 col-form-label">Identificacion</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="number" name="identificacion" placeholder="Escriba la identificacion" value="${data.user.identificacion}" required />
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Correo (opcional)</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="email" name="email" placeholder="Escriba el correo" value="${(data.user.email) ? data.user.email : ''}" />
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                         <div class="col-sm-10">
@@ -153,14 +157,14 @@ function showUser(id) {
                             </select>
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="password" name="password" placeholder="Escriba la contraseña" />
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label for="tipo" class="col-sm-2 col-form-label">Tipo</label>
                         <div class="col-sm-10">
@@ -171,7 +175,7 @@ function showUser(id) {
                             </select>
                         </div>
                     </div>
-                
+
                     <div class="form-group row ${(data.rol == 'admin') ? 'd-none' : ''} divPermisos">
                         <label for="permiso" class="col-sm-2 col-form-label">Permiso</label>
                         <div class="col-sm-10 mt-2">
@@ -197,10 +201,10 @@ function showUser(id) {
                             </div>
                         </div>
                     </div>
-                
+
                     <div class="mt-3">
                         <button class="btn btn-primary btn-lg waves-effect waves-light" type="submit">Actualizar</button>
-                    </div> 
+                    </div>
 
                 </form>`;
 
@@ -220,9 +224,9 @@ function showProveedor(id) {
         success: function (data) {
             $('#modal-blade').modal('show');
             $('#modal-blade-title').html(data.proveedor.name);
-            
+
             var content = `
-            
+
                 <form action="/proveedores/update" method="POST">
 
                     <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
@@ -234,14 +238,14 @@ function showProveedor(id) {
                             <input class="form-control" type="number" name="nit" placeholder="Escriba el nit" value="${(data.proveedor.nit) ? data.proveedor.nit : ''}" />
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="name" placeholder="Escriba el nombre" value="${data.proveedor.name}" required />
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label for="telefono" class="col-sm-2 col-form-label">Telefono</label>
                         <div class="col-sm-10">
@@ -267,15 +271,71 @@ function showProveedor(id) {
                             </select>
                         </div>
                     </div>
-                
+
                     <div class="mt-3">
                         <button class="btn btn-primary btn-lg waves-effect waves-light" type="submit">Actualizar</button>
-                    </div> 
-                
+                    </div>
+
                 </form>`;
 
             $('#modal-blade-body').html(content);
             $('#regimen').val(data.proveedor.regimen);
+
+        }
+    });
+}
+
+function showCliente(id) {
+    $.ajax({
+        url: '/clientes/show/'+id,
+        type: 'get',
+        success: function (data) {
+            console.log(data)
+            $('#modal-create-cliente').modal('show');
+            $('#modal-title-cliente').html('Actualizar '+data.cliente.name);
+
+            var content = `
+
+                <form action="/clientes/update" method="POST">
+
+                    <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
+                    <input type="hidden" name="id" value="${data.cliente.id}">
+
+                    <div class="form-group row">
+                        <label for="identificacion" class="col-sm-2 col-form-label">Identificacion</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="identificacion" placeholder="Escriba el identificacion" value="${data.cliente.identificacion}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label">Nombre</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="name" placeholder="Escriba el nombre" value="${data.cliente.name}" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="telefono" class="col-sm-2 col-form-label">Telefono</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="telefono" placeholder="Escriba el telefono" value="${(data.cliente.telefono) ? data.cliente.telefono : ''}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="direccion" placeholder="Escriba la direccion" value="${(data.cliente.direccion) ? data.cliente.direccion : ''}" />
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <button class="btn btn-primary btn-lg waves-effect waves-light" type="submit">Actualizar</button>
+                    </div>
+
+                </form>`;
+
+            $('#modal-content-cliente').html(content);
 
         }
     });
@@ -289,9 +349,9 @@ function showProducto(id) {
             console.log(data)
             $('#modal-blade').modal('show');
             $('#modal-blade-title').html(data.producto.name);
-            
+
             var content = `
-            
+
                 <form action="/productos/update" method="POST">
 
                     <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
@@ -303,7 +363,7 @@ function showProducto(id) {
                             <input class="form-control" type="text" name="name" placeholder="Escriba el nombre" required value="${data.producto.name}" />
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label for="cantidad" class="col-sm-2 col-form-label">Cantidad</label>
                         <div class="col-sm-10">
@@ -324,7 +384,7 @@ function showProducto(id) {
                             <input class="form-control" type="text" name="descripcion" placeholder="Escriba la descripcion" value="${(data.producto.descripcion) ? data.producto.descripcion : '' }" />
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label for="iva" class="col-sm-2 col-form-label">IVA %</label>
                         <div class="col-sm-10">
@@ -351,10 +411,10 @@ function showProducto(id) {
                 content += `
                     <div class="mt-3 text-center">
                         <button class="btn btn-primary btn-lg waves-effect waves-light" type="submit">Actualizar</button>
-                    </div> 
-                    
+                    </div>
+
                 </form>
-                    
+
                 <hr>
                 <form action="/productos/add/proveedor" method="POST">
 
@@ -398,9 +458,9 @@ function showSalida(id) {
 
             $('#modal-blade').modal('show');
             $('#modal-blade-title').html('Detalle de factura #'+data.id_factura);
-            
+
             var content = `
-            
+
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -446,7 +506,7 @@ function showSalida(id) {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <div class="panel panel-default">
@@ -476,8 +536,8 @@ function showSalida(id) {
                                                     </tr>
                                                 `;
                                             });
-                                                
-                                            content += ` 
+
+                                            content += `
                                                 <tr>
                                                     <td class="thick-line"></td>
                                                     <td class="thick-line"></td>
@@ -522,7 +582,9 @@ function selectTipo(tipo) {
 
 function createCliente() {
     $.ajax({
-        url: '/clientes/create',
+
+
+        url: '/clientes/create/ajax',
         type: 'post',
         data: $('#form_createCliente').serialize(),
         success: function (data) {
@@ -597,7 +659,7 @@ function addProductoEntrada() {
     var precio = $('#producto_precio').val()
     var total_productos = $('#total_productos').val()
     var total = $('#total_entrada_input').val();
-    
+
     var content = $('#content_productos').html()
     content += `
         <hr class="mt-5">
@@ -615,7 +677,7 @@ function addProductoEntrada() {
     $('#producto_id').val('').addClass('active').selected = true
     $('#producto_cantidad').val('')
     $('#producto_precio').val('')
-    
+
     total = parseInt(total) + (precio*cantidad)
     $('#total_entrada').html(total)
     $('#total_entrada_input').val(total)
@@ -631,9 +693,9 @@ function showEntrada(id) {
 
             $('#modal-blade').modal('show');
             $('#modal-blade-title').html('Detalle de entrada #'+data.id_factura);
-            
+
             var content = `
-            
+
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -679,7 +741,7 @@ function showEntrada(id) {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <div class="panel panel-default">
@@ -709,8 +771,8 @@ function showEntrada(id) {
                                                     </tr>
                                                 `;
                                             });
-                                                
-                                            content += ` 
+
+                                            content += `
                                                 <tr>
                                                     <td class="thick-line"></td>
                                                     <td class="thick-line"></td>

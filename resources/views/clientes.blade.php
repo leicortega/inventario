@@ -13,7 +13,7 @@
                             <div class="table-responsive mb-3" id="Resultados">
 
                                 @if ($errors->any())
-                                    <div class="alert alert-danger mb-0" role="alert">
+                                    <div class="alert alert-danger mb-2" role="alert">
                                         <ul>
                                             @foreach ($errors->all() as $error)
                                                 <li>{{ $error }}</li>
@@ -24,13 +24,13 @@
 
                                 @if (session()->has('create') && session('create') == 1)
                                     <div class="alert alert-success">
-                                        El Proveedor se creo correctamente.
+                                        El Cliente se creo correctamente.
                                     </div>
                                 @endif
 
                                 @if (session()->has('update') && session('update') == 1)
                                     <div class="alert alert-success">
-                                        El Proveedor se actualizo correctamente.
+                                        El Cliente se actualizo correctamente.
                                     </div>
                                 @endif
 
@@ -40,20 +40,20 @@
                                     </div>
                                 @endif
 
-                                <button type="button" class="btn btn-primary mb-2 mr-2 waves-effect waves-light" data-toggle="modal" data-target="#modal-create-proveedor"><i class="mdi mdi-plus mr-1"></i> Agregar</button>
+                                <button type="button" class="btn btn-primary mb-2 mr-2 waves-effect waves-light" data-toggle="modal" data-target="#modal-create-cliente"><i class="mdi mdi-plus mr-1"></i> Agregar</button>
 
                                 <table class="table table-centered table-hover table-bordered mb-0">
                                     <thead>
                                         <tr>
                                             <th colspan="12" class="text-center">
                                                 <div class="d-inline-block icons-sm mr-2"><i class="uim uim-layer-group"></i></div>
-                                                <span class="header-title mt-2">Proveedores</span>
+                                                <span class="header-title mt-2">Clientes</span>
                                             </th>
                                         </tr>
                                         <!--Parte de busqueda de datos-->
                                         <tr>
                                             <th colspan="12" class="text-center">
-                                                <form action="/proveedores/buscar" method="post" class="d-inline-block w-50">
+                                                <form action="/clientes/buscar" method="post" class="d-inline-block w-50">
                                                     @csrf
 
                                                     <div class="row col-12 text-center">
@@ -71,27 +71,25 @@
                                         <!--Fin parte de busqueda de datos-->
                                         <tr>
                                             <th scope="col">N°</th>
-                                            <th scope="col">Nit</th>
+                                            <th scope="col">Identificacion</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Telefono</th>
                                             <th scope="col">Direccion</th>
-                                            <th scope="col">Regimen</th>
                                             <th scope="col">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($proveedores as $proveedor)
+                                        @foreach ($clientes as $cliente)
                                             <tr>
                                                 <th scope="row">
-                                                    <a href="#">{{ $proveedor->id }}</a>
+                                                    <a href="#">{{ $cliente->id }}</a>
                                                 </th>
-                                                <td>{{ $proveedor->nit }}</td>
-                                                <td>{{ $proveedor->name }}</td>
-                                                <td>{{ $proveedor->telefono }}</td>
-                                                <td>{{ $proveedor->direccion }}</td>
-                                                <td>{{ $proveedor->regimen }}</td>
+                                                <td>{{ $cliente->identificacion }}</td>
+                                                <td>{{ $cliente->name }}</td>
+                                                <td>{{ $cliente->telefono }}</td>
+                                                <td>{{ $cliente->direccion }}</td>
                                                 <td class="text-center">
-                                                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="showProveedor({{ $proveedor->id }})" data-toggle="tooltip" data-placement="top" title="Editar Usuario">
+                                                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="showCliente({{ $cliente->id }})" data-toggle="tooltip" data-placement="top" title="Editar Cliente">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </button>
                                                 </td>
@@ -102,7 +100,7 @@
                                 </table>
                             </div>
 
-                            {{ $proveedores->links() }}
+                            {{ $clientes->links() }}
 
                         </div>
                     </div>
@@ -114,23 +112,23 @@
     </div> <!-- container-fluid -->
 </div>
 
-<div class="modal fade bs-example-modal-lg" id="modal-create-proveedor" tabindex="-1" role="dialog" aria-labelledby="modal-blade-title" aria-hidden="true">
+<div class="modal fade bs-example-modal-lg" id="modal-create-cliente" tabindex="-1" role="dialog" aria-labelledby="modal-blade-title" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0">Crear Proveedor</h5>
+                <h5 class="modal-title mt-0" id="modal-title-cliente">Crear Cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form action="/proveedores/create" method="POST">
+            <div class="modal-body" id="modal-content-cliente">
+                <form action="/clientes/create" method="POST">
                     @csrf
 
                     <div class="form-group row">
-                        <label for="nit" class="col-sm-2 col-form-label">Nit</label>
+                        <label for="identificacion" class="col-sm-2 col-form-label">Identificacion</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="number" name="nit" placeholder="Escriba el nit" />
+                            <input class="form-control" type="number" name="identificacion" placeholder="Escriba la identificación" required/>
                         </div>
                     </div>
 
@@ -138,6 +136,13 @@
                         <label for="name" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="name" placeholder="Escriba el nombre" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="correo" class="col-sm-2 col-form-label">Correo</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="email" name="correo" placeholder="Escriba el correo" />
                         </div>
                     </div>
 
@@ -152,18 +157,6 @@
                         <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="direccion" placeholder="Escriba la direccion" />
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="regimen" class="col-sm-2 col-form-label">Regimen</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="regimen" required>
-                                <option value="">Seleccione el regimen</option>
-                                <option value="Común">Común</option>
-                                <option value="Simplificado">Simplificado</option>
-                                <option value="Especial">Especial</option>
-                            </select>
                         </div>
                     </div>
 

@@ -18,7 +18,7 @@ class ProductosController extends Controller
 
     public function index() {
         $productos = Producto::paginate(10);
-        
+
         return view('productos', ['productos' => $productos]);
     }
 
@@ -70,7 +70,7 @@ class ProductosController extends Controller
         ]);
 
         return redirect()->route('productos')->with('update', 1);
-        
+
     }
 
     public function deleteProveedor(Request $request) {
@@ -84,12 +84,12 @@ class ProductosController extends Controller
     }
 
     public function addProveedor(Request $request) {
-        
+
         $proveedor = Proveedores_producto::create([
             'productos_id' => $request['id_producto_add'],
             'proveedores_id' => $request['id_proveedores_add']
         ]);
-        
+
         if ($proveedor->save()) {
             return redirect()->route('productos')->with('add', 1);
         } else {
@@ -103,10 +103,16 @@ class ProductosController extends Controller
         // return ['salidas' => $salidas];
         return view('historial_salidas', ['salidas' => $salidas]);
     }
-    
+
     public function historialEntradas(Request $request) {
         $entradas = Detalle_entrada::where('productos_id', $request['id'])->with('productos')->with('entrada')->paginate(10);
 
         return view('historial_entradas', ['entradas' => $entradas]);
+    }
+
+    public function buscar(Request $request) {
+        $productos = Producto::where('code', 'LIKE', '%'.$request['buscar'].'%')->orWhere('name', 'LIKE', '%'.$request['buscar'].'%')->orWhere('descripcion', 'LIKE', '%'.$request['buscar'].'%')->paginate(10);
+
+        return view('productos', ['productos' => $productos]);
     }
 }

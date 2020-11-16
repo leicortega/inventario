@@ -12,6 +12,7 @@ class ClienteController extends Controller
     }
 
     public function create(Request $request) {
+        // dd($request);
         $cliente = Cliente::create([
             'name' => $request['name'],
             'identificacion' => $request['identificacion'],

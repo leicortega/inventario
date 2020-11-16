@@ -72,6 +72,19 @@
                         </li>
                     @endcanany
 
+                    @canany(['clientes', 'universal'])
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <div class="d-inline-block icons-sm mr-1"><i class="uim uim-record-audio"></i></div>
+                                <span>Clientes</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="clientes/create">Crear</a></li>
+                                <li><a href="clientes/list">Lista de Clientes</a></li>
+                            </ul>
+                        </li>
+                    @endcanany
+
                     @canany(['universal'])
 
                         <li class="menu-title">Administrador</li>
@@ -127,6 +140,26 @@
 
                     <li>
                         <a href="#" data-toggle="modal" data-target="#modal-create-proveedor" class="waves-effect">
+                            <div class="d-inline-block icons-sm"></div>
+                            <span>Crear</span>
+                        </a>
+                    </li>
+
+                @endif
+
+                @if ( Request::is('clientes/') || Request::is('clientes/*') )
+
+                    <li class="menu-title">Clientes</li>
+
+                    {{-- <li>
+                        <a href="/admin/users" class="waves-effect">
+                            <div class="d-inline-block icons-sm"></div>
+                            <span>Lista de Usuarios</span>
+                        </a>
+                    </li> --}}
+
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#modal-create-cliente" class="waves-effect">
                             <div class="d-inline-block icons-sm"></div>
                             <span>Crear</span>
                         </a>

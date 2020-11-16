@@ -22,6 +22,17 @@ Route::group(['middleware' => ['permission:proveedores|universal']], function ()
     Route::post('/proveedores/create', 'ProveedoresController@create');
     Route::get('/proveedores/show/{id}', 'ProveedoresController@show');
     Route::post('/proveedores/update', 'ProveedoresController@update');
+    Route::post('/proveedores/buscar', 'ProveedoresController@buscar');
+});
+
+// Rutas para Clientes
+Route::group(['middleware' => ['permission:clientes|universal']], function () {
+    Route::get('/clientes/list', 'ClientesController@index')->name('clientes');
+    Route::get('/clientes/create', 'ClientesController@index');
+    Route::post('/clientes/create', 'ClientesController@create');
+    Route::get('/clientes/show/{id}', 'ClientesController@show');
+    Route::post('/clientes/update', 'ClientesController@update');
+    Route::post('/clientes/buscar', 'ClientesController@buscar');
 });
 
 // Rutas para Productos
@@ -35,6 +46,7 @@ Route::group(['middleware' => ['permission:productos|universal']], function () {
     Route::post('/productos/update', 'ProductosController@update');
     Route::post('/productos/delete/proveedor', 'ProductosController@deleteProveedor');
     Route::post('/productos/add/proveedor', 'ProductosController@addProveedor');
+    Route::post('/productos/buscar', 'ProductosController@buscar');
 });
 
 // Rutas para Salidas
@@ -58,7 +70,7 @@ Route::group(['middleware' => ['permission:entradas|universal']], function () {
     Route::get('/entradas/print/{id}', 'EntradaController@printEntrada');
 });
 
-Route::post('/clientes/create', 'ClienteController@create');
+Route::post('/clientes/create/ajax', 'ClienteController@create');
 
 Auth::routes(['register' => false]);
 

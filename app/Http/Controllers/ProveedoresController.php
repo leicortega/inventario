@@ -57,6 +57,12 @@ class ProveedoresController extends Controller
         ]);
 
         return redirect()->route('proveedores')->with('update', 1);
-        
+
+    }
+
+    public function buscar(Request $request) {
+        $proveedores = Proveedor::where('nit', 'LIKE', '%'.$request['buscar'].'%')->orWhere('name', 'LIKE', '%'.$request['buscar'].'%')->orWhere('telefono', 'LIKE', '%'.$request['buscar'].'%')->paginate(10);
+
+        return view('proveedores', ['proveedores' => $proveedores]);
     }
 }

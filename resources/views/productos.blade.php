@@ -12,7 +12,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row p-xl-5 p-md-3">                   
+                        <div class="row p-xl-5 p-md-3">
                             <div class="table-responsive mb-3" id="Resultados">
 
                                 @if ($errors->any())
@@ -48,7 +48,7 @@
                                         El Producto se actualizo correctamente.
                                     </div>
                                 @endif
-                                
+
                                 @if (session()->has('create') && session('create') == 0)
                                     <div class="alert alert-danger">
                                         Ocurrio un error, contacte al desarrollador.
@@ -68,26 +68,19 @@
                                         <!--Parte de busqueda de datos-->
                                         <tr>
                                             <th colspan="12" class="text-center">
-                                                {{-- <form action="/dashboard/programacion-viaje/get-ciudades" method="get" class="d-inline-block w-50">
+                                                <form action="/productos/buscar" method="post" class="d-inline-block w-50">
                                                     @csrf
 
                                                     <div class="row col-12 text-center">
-                                                        <div class="styled-select col-5">
-                                                            <select class="form-control required" id="ciudad_origen" name="ciudad_origen" required onchange="ciudadDestino(this.value)">
-                                                                <option value="">Ciudad Origen</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="styled-select col-5">
-                                                            <select class="form-control required" id="ciudad_destino" name="ciudad_destino" required>
-                                                                <option value="">Ciudad Destino</option>
-                                                            </select>
+                                                        <div class="styled-select col-8">
+                                                            <input type="text" name="buscar" id="buscar" class="form-control" placeholder="Buscar...">
                                                         </div>
                                                         <div class="col-2">
                                                             <button type="submit" class="btn btn-primary">Buscar</button>
-                                                            
+
                                                         </div>
                                                     </div>
-                                                </form> --}}
+                                                </form>
                                             </th>
                                         </tr>
                                         <!--Fin parte de busqueda de datos-->
@@ -120,13 +113,13 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
 
                             {{ $productos->links() }}
-                            
+
                         </div>
                     </div>
                 </div>
@@ -148,18 +141,18 @@
             <div class="modal-body">
                 <form action="/productos/delete/proveedor" method="POST">
                     @csrf
-                    
+
                     <h3 class="text-center">¿Seguro desea eliminar el proveedor?</h3>
 
                     <input class="form-control d-none" type="number" name="id_producto_delete" id="id_producto_delete"  />
                     <input class="form-control d-none" type="number" name="id_proveedor_delete" id="id_proveedor_delete"  />
-                
+
                     <div class="mt-3 text-center">
                         <button class="btn btn-dark btn-lg waves-effect waves-light" data-dismiss="modal" aria-label="Close" type="button">Cancelar</button>
-                    
+
                         <button class="btn btn-danger btn-lg waves-effect waves-light" type="submit">Eliminar</button>
-                    </div> 
-                
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -185,14 +178,14 @@
                             <input class="form-control" type="number" name="code" placeholder="Escriba el Codigo de barras" />
                         </div>
                     </div> --}}
-                
+
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="name" placeholder="Escriba el nombre" required />
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label for="cantidad" class="col-sm-2 col-form-label">Cantidad</label>
                         <div class="col-sm-10">
@@ -232,11 +225,11 @@
                             </select>
                         </div>
                     </div>
-                
+
                     <div class="mt-3">
                         <button class="btn btn-primary btn-lg waves-effect waves-light" type="submit">Crear</button>
-                    </div> 
-                
+                    </div>
+
                 </form>
             </div>
         </div>
